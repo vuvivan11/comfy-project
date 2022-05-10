@@ -7,14 +7,17 @@ const navLinks = [
   {
     name: "home",
     path: "/",
+    icon: "fas fa-home fa-fw"
   },
   {
     name: "products",
     path: "/products",
+    icon: "fas fa-couch fa-fw"
   },
   {
     name: "about",
     path: "/about",
+    icon: "fas fa-book fa-fw"
   },
 ];
 
@@ -27,7 +30,7 @@ export default function SidebarOverlay() {
       return (
         <li key={index}>
           <Link to={nav.path} className="sidebar-link" onClick={() => {dispatch(activeSlice.actions.hiddenNav())}}>
-            <i className="fas fa-home fa-fw" />
+            <i className={nav.icon} />
             {nav.name}
           </Link>
         </li>

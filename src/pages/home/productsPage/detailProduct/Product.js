@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import cartSlice from "../../../../store/cartSlice";
 import { formatPrice } from "../../../../utils";
 import { Link } from "react-router-dom";
 import productListSlice from "../../../../store/productListSlice";
+
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -12,6 +13,7 @@ import "swiper/css";
 
 export default function Product(props) {
   const { detailProduct, relatedProduct } = props;
+  const eleDetail = useRef(null)
   const dispatch = useDispatch();
 
   const renderColor = (colors) => {
@@ -86,7 +88,7 @@ export default function Product(props) {
     const { price, name, image, company, colors } = detailProduct.fields;
     return (
       <>
-        <section className="single-product">
+        <section ref={eleDetail}  className="single-product">
           <div className="section-center single-product-center">
             <img
               src={`${image[0].thumbnails.large.url}`}
