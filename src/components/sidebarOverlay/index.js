@@ -1,36 +1,57 @@
-import React from 'react'
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import activeSlice from "../../store/activeSlice";
+
+const navLinks = [
+  {
+    name: "home",
+    path: "/",
+  },
+  {
+    name: "products",
+    path: "/products",
+  },
+  {
+    name: "about",
+    path: "/about",
+  },
+];
 
 export default function SidebarOverlay() {
-    return (
-        <div className="sidebar-overlay">
-            <aside className="sidebar">
-                {/* close */}
-                <button className="sidebar-close">
-                    <i className="fas fa-times" />
-                </button>
-                {/* links */}
-                <ul className="sidebar-links">
-                    <li>
-                        <a href="index.html" className="sidebar-link">
-                            <i className="fas fa-home fa-fw" />
-                            home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="products.html" className="sidebar-link">
-                            <i className="fas fa-couch fa-fw" />
-                            products
-                        </a>
-                    </li>
-                    <li>
-                        <a href="about.html" className="sidebar-link">
-                            <i className="fas fa-book fa-fw" />
-                            about
-                        </a>
-                    </li>
-                </ul>
-            </aside>
-        </div>
+  const { showNav } = useSelector((state) => state.active);
+  const dispatch = useDispatch();
 
-    )
+  const renderNavLinks = () => {
+    return navLinks.map((nav, index) => {
+      return (
+        <li key={index}>
+          <Link to={nav.path} className="sidebar-link" onClick={() => {dispatch(activeSlice.actions.hiddenNav())}}>
+            <i className="fas fa-home fa-fw" />
+            {nav.name}
+          </Link>
+        </li>
+      );
+    });
+  };
+
+  return (
+    <div className={`sidebar-overlay ${showNav ? "show" : ""}`}>
+      <aside className="sidebar">
+        {/* close */}
+        <button
+          className="sidebar-close"
+          onClick={() => {
+            dispatch(activeSlice.actions.hiddenNav());
+          }}
+        >
+          <i className="fas fa-times" />
+        </button>
+        {/* links */}
+        <ul className="sidebar-links">
+          {renderNavLinks()}
+        </ul>
+      </aside>
+    </div>
+  );
 }

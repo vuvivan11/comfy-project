@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import activeSlice from '../../store/activeSlice';
 import cartSlice from '../../store/cartSlice';
 
 const navLinks = [
@@ -33,7 +34,7 @@ export default function Header({ exact }) {
       <div className="nav-center">
         {/* links */}
         <div>
-          <button className="toggle-nav">
+          <button className="toggle-nav" onClick={() => {dispatch(activeSlice.actions.displayNav())}}>
             <i className="fas fa-bars" />
           </button>
           <ul className="nav-links">
