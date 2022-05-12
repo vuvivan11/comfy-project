@@ -746,7 +746,7 @@ Single Product Page
 .single-product-img {
   height: 25rem;
   border-radius: var(--radius);
-  object-fit: cover;
+  object-fit: contain;
 }
 .single-product-company {
   font-size: 1.2rem;
@@ -774,12 +774,21 @@ Single Product Page
   max-width: 25em;
   line-height: 1.8;
 }
-@media screen and (min-width: 992px) {
+
+@media screen and (min-width: 768px) {
   .single-product-center {
     grid-template-columns: 1fr 1fr;
+    object-fit: contain
   }
 }
 
+@media screen and (min-width: 375px) {
+  .single-product-img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
 /*
 =============== 
 Swiper
