@@ -13,8 +13,10 @@ import "swiper/css";
 
 export default function Product(props) {
   const { detailProduct, relatedProduct } = props;
-  const eleDetail = useRef(null)
+  const eleDetail = useRef();
   const dispatch = useDispatch();
+
+  console.log(eleDetail.current);
 
   const renderColor = (colors) => {
     return colors.map((color, index) => {
@@ -60,6 +62,7 @@ export default function Product(props) {
                         product.fields.company
                       )
                     );
+                    scrollToDetail()
                   }}
                 >
                   <i className="fas fa-search" />
@@ -84,11 +87,15 @@ export default function Product(props) {
     });
   };
 
+  const scrollToDetail = () => {
+    eleDetail.current.scrollIntoView({ behavior: "smooth"})
+  }
+
   if (detailProduct && relatedProduct) {
     const { price, name, image, company, colors } = detailProduct.fields;
     return (
       <>
-        <section ref={eleDetail}  className="single-product">
+        <section ref={eleDetail} className="single-product">
           <div className="section-center single-product-center">
             <img
               src={`${image[0].thumbnails.large.url}`}

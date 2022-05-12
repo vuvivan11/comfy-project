@@ -506,7 +506,7 @@ const productListSlice = createSlice({
                 return product.id === action.payload
             })
             const related = []
-            state.productList.map((product) => {
+            state.productList.filter((product) => {
                 if(product.fields.company === state.detailProduct.fields.company){
                     related.push(product)
                 }
@@ -515,7 +515,7 @@ const productListSlice = createSlice({
         },
         getRelatedProduct: (state, action) => {
             const related = []
-            state.productList.map((product) => {
+            state.productList.filter((product) => {
                 if(product.fields.company === action.payload){
                     related.push(product)
                 }
