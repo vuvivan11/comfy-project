@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { productListRemainingReducer } from '../../../../../selector';
@@ -6,8 +6,9 @@ import cartSlice from '../../../../../store/cartSlice';
 import productListSlice from '../../../../../store/productListSlice';
 import { formatPrice } from "../../../../../utils"
 
-export default function Container() {
+export default function Container({onEleFromContainer}) {
     const productListRemaining = useSelector(productListRemainingReducer);
+    const refEle = useRef();
     const dispatch = useDispatch();
 
     const handleAddCart = (product) => {
@@ -49,8 +50,12 @@ export default function Container() {
             )
         })
     }
+
+    useEffect(() => {
+        onEleFromContainer(refEle)
+    }, [refEle])
     return (
-        <div className="products-container">
+        <div ref={refEle} className="products-container">
             {renderProducts(productListRemaining)}
         </div>
 

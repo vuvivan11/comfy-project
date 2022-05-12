@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from './container'
 import Filters from './fillter'
 
 export default function Products() {
+    const [scrollToEle, setScrollToELe] = useState()
+
+    const handleScrollToEle = () => {
+        scrollToEle.current.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" })
+    }
+
+    const getEleFromContainer = (ele) => {
+        setScrollToELe(ele)
+    }
     return (
         <section className="products">
             {/* filters */}
-            <Filters />
+            <Filters onScrollToEle={handleScrollToEle} />
             {/* products */}
-            <Container />
+            <Container onEleFromContainer={getEleFromContainer} />
         </section>
     )
 }
