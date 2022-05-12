@@ -6,7 +6,7 @@ export default function Products() {
     const [scrollToEle, setScrollToELe] = useState()
 
     const handleScrollToEle = () => {
-        scrollToEle.current.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" })
+        scrollToEle.current.scrollIntoView({ behavior: "smooth"})
     }
 
     const getEleFromContainer = (ele) => {
