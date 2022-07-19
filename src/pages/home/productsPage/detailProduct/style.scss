@@ -1,0 +1,20 @@
+/*
+=============== 
+Swiper
+===============
+*/
+
+.ct-swiper {
+    margin: 2rem 0;
+}
+
+.ct-swiper-slide {
+    /* background-color: blue; */
+    text-align: center;
+}
+
+@media screen and (min-width: 992px) {
+    .ct-swiper {
+        width: 1170px;
+    }
+}
