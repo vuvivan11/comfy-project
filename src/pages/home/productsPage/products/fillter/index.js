@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import filtersSlide from '../../../../../store/filtersSlide';
 
-export default function Filters() {
+export default function Filters({onScrollToEle}) {
     const { productList } = useSelector(state => state.productList);
     const { price } = useSelector(state => state.filters);
     const { company } = useSelector(state => state.filters);
@@ -20,6 +20,7 @@ export default function Filters() {
         return companies.map((company) => {
             return <button key={company} className={`company-btn ${isActive === company ? "active-btn" : ""}`} onClick={() => {
                 setIsActive(company);
+                onScrollToEle();
                 dispatch(filtersSlide.actions.companyFilter(company))
             }}>{company}</button>
         })
