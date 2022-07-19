@@ -1,8 +1,8 @@
-import Home from '../pages/home';
-import AboutPage from '../pages/home/AboutPage';
-import HomePage from '../pages/home/homePage';
-import ProductPage from '../pages/home/productsPage';
-import DetailProduct from '../pages/home/productsPage/detailProduct';
+import Home from '~/pages/home';
+import AboutPage from '~/pages/home/AboutPage';
+import HomePage from '~/pages/home/homePage';
+import ProductPage from '~/pages/home/productsPage';
+import DetailProduct from '~/pages/home/productsPage/detailProduct';
 
 const routesHome = [
     {
